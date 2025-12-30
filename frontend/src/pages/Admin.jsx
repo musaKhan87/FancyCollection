@@ -18,36 +18,34 @@ import axios from "axios";
 const Admin = () => {
   const [activeTab, setActiveTab] = useState("products");
   const [searchTerm, setSearchTerm] = useState("");
-    const [products, setProducts] = useState([]);
-    const [image, setImage] = useState(null);
-    const [preview, setPreview] = useState(null);
-const [name, setName] = useState("");
-const [price, setPrice] = useState("");
-const [stock, setStock] = useState("");
-const [category, setCategory] = useState("");
+  const [products, setProducts] = useState([]);
+  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
+  const [category, setCategory] = useState("");
 
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
 
-    const handleImageUpload = (e) => {
-      const file = e.target.files[0];
+    if (!file) return;
 
-      if (!file) return;
+    // Validate file type
+    if (!file.type.startsWith("image/")) {
+      alert("Only image files allowed");
+      return;
+    }
 
-      // Validate file type
-      if (!file.type.startsWith("image/")) {
-        alert("Only image files allowed");
-        return;
-      }
+    // Validate size (5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Image must be under 5MB");
+      return;
+    }
 
-      // Validate size (5MB)
-      if (file.size > 5 * 1024 * 1024) {
-        alert("Image must be under 5MB");
-        return;
-      }
-
-      setImage(file);
-      setPreview(URL.createObjectURL(file));
-    };
-
+    setImage(file);
+    setPreview(URL.createObjectURL(file));
+  };
 
   const [showAddModal, setShowAddModal] = useState(false);
 
@@ -55,7 +53,9 @@ const [category, setCategory] = useState("");
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/products");
+        const res = await axios.get(
+          "https://fancycollection-backend-76ju.onrender.com/api/products"
+        );
         setProducts(res.data);
       } catch (error) {
         console.error("Failed to fetch products", error);
@@ -63,58 +63,59 @@ const [category, setCategory] = useState("");
     };
     fetchProducts();
   }, []);
-    
-    const handleAddProduct = async () => {
-      try {
-        if (!name || !price || !image) {
-          alert("Please fill all required fields");
-          return;
-        }
 
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("pricePerMeter", price);
-        formData.append("stock", stock);
-        formData.append("category", category);
-        formData.append("image", image);
-
-        const res = await axios.post(
-          "http://localhost:5000/api/products",
-          formData,
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-          }
-        );
-
-        setProducts((prev) => [res.data, ...prev]);
-
-        setShowAddModal(false);
-        setName("");
-        setPrice("");
-        setStock("");
-        setCategory("");
-        setImage(null);
-        setPreview(null);
-      } catch (error) {
-        alert("Failed to add product");
-        console.error(error);
-      }
-    };
-
-    const handleDelete = async (id) => {
-      if (!window.confirm("Are you sure you want to delete this product?"))
+  const handleAddProduct = async () => {
+    try {
+      if (!name || !price || !image) {
+        alert("Please fill all required fields");
         return;
-
-      try {
-        await axios.delete(`http://localhost:5000/api/products/${id}`);
-
-        setProducts((prev) => prev.filter((p) => p._id !== id));
-      } catch (error) {
-        console.error("Delete failed", error);
-        alert("Failed to delete product");
       }
-    };
 
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("pricePerMeter", price);
+      formData.append("stock", stock);
+      formData.append("category", category);
+      formData.append("image", image);
+
+      const res = await axios.post(
+        "https://fancycollection-backend-76ju.onrender.com/api/products",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      setProducts((prev) => [res.data, ...prev]);
+
+      setShowAddModal(false);
+      setName("");
+      setPrice("");
+      setStock("");
+      setCategory("");
+      setImage(null);
+      setPreview(null);
+    } catch (error) {
+      alert("Failed to add product");
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this product?"))
+      return;
+
+    try {
+      await axios.delete(
+        `https://fancycollection-backend-76ju.onrender.com/api/products/${id}`
+      );
+
+      setProducts((prev) => prev.filter((p) => p._id !== id));
+    } catch (error) {
+      console.error("Delete failed", error);
+      alert("Failed to delete product");
+    }
+  };
 
   const filteredProducts = products.filter((p) =>
     p.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -122,7 +123,6 @@ const [category, setCategory] = useState("");
 
   const tabs = [{ id: "products", label: "Products", icon: Package }];
 
-    
   return (
     <div className="min-h-screen bg-theme-background flex">
       {/* Sidebar */}
