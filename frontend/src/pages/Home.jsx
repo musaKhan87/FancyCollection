@@ -22,7 +22,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchProducts();     // ✅ correct function
+    fetchProducts(); // ✅ correct function
+    const interval = setInterval(fetchProducts, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const featuredProducts = products.slice(0, 4);   // safe because products = []

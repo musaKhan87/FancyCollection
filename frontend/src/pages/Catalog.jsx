@@ -9,20 +9,23 @@ import { Input } from "../components/UI/Input";
 const Catalog = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
-  // Fetch products
-  useEffect(() => {
     const fetchProducts = async () => {
-      try {
+    try {
         const res = await axios.get(
-          "https://fancycollection-backend-76ju.onrender.com/api/products"
+        "https://fancycollection-backend-76ju.onrender.com/api/products"
         );
         setProducts(res.data);
-      } catch (error) {
+    } catch (error) {
         console.error("Failed to fetch products", error);
-      }
+    }
     };
+  // Fetch products
+  useEffect(() => {
+    
     fetchProducts();
+    const interval = setInterval(fetchProducts, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
   // 🔍 Search logic

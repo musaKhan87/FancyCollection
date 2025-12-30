@@ -1,5 +1,6 @@
 import { MessageCircle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import axios from "axios"
 import { useEffect, useState } from "react";
 
 const HeroSection = () => {
@@ -9,6 +10,16 @@ const HeroSection = () => {
   /* ================= BACKGROUND SLIDER ================= */
   const heroImages = ["/hero2.jpeg", "/hero.jpeg", "/hero1.jpeg"];
   const [currentImage, setCurrentImage] = useState(0);
+
+  const getServer = async () => {
+    const response = await axios.get(
+      "https://fancycollection-backend-76ju.onrender.com/api/products/get"
+    );
+  };
+
+  useEffect(() => {
+    getServer();
+  },[])
 
   useEffect(() => {
     const interval = setInterval(() => {
