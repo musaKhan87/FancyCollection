@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dynamic Theme Variables */
+:root {
+  --theme-background: #FAF8F5;
+  --theme-surface: #EFE3D6;
+  --theme-text: #3A2A24;
+  --theme-heading: #3A2A24;
+  --theme-border: #D5C4B3;
+  --theme-accent: #8C4A4A;
+  --theme-button: #8C4A4A;
+  --theme-button-text: #FAF8F5;
+}
+
+@layer base {
+  :root {
+    --background: 35 33% 97%;
+    --foreground: 18 24% 18%;
+
+    --card: 35 33% 97%;
+    --card-foreground: 18 24% 18%;
+
+    --popover: 35 33% 97%;
+    --popover-foreground: 18 24% 18%;
+
+    --primary: 0 32% 42%;
+    --primary-foreground: 35 33% 97%;
+
+    --secondary: 30 29% 89%;
+    --secondary-foreground: 18 24% 18%;
+
+    --muted: 30 29% 89%;
+    --muted-foreground: 18 24% 40%;
+
+    --accent: 0 32% 42%;
+    --accent-foreground: 35 33% 97%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 20% 78%;
+    --input: 30 20% 78%;
+    --ring: 0 32% 42%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 35 33% 97%;
+    --sidebar-foreground: 18 24% 18%;
+    --sidebar-primary: 0 32% 42%;
+    --sidebar-primary-foreground: 35 33% 97%;
+    --sidebar-accent: 30 29% 89%;
+    --sidebar-accent-foreground: 18 24% 18%;
+    --sidebar-border: 30 20% 78%;
+    --sidebar-ring: 0 32% 42%;
+  }
+
+  .dark {
+    --background: 18 24% 10%;
+    --foreground: 35 33% 97%;
+
+    --card: 18 24% 12%;
+    --card-foreground: 35 33% 97%;
+
+    --popover: 18 24% 12%;
+    --popover-foreground: 35 33% 97%;
+
+    --primary: 0 32% 52%;
+    --primary-foreground: 35 33% 97%;
+
+    --secondary: 18 24% 18%;
+    --secondary-foreground: 35 33% 97%;
+
+    --muted: 18 24% 18%;
+    --muted-foreground: 35 15% 60%;
+
+    --accent: 0 32% 52%;
+    --accent-foreground: 35 33% 97%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 18 24% 20%;
+    --input: 18 24% 20%;
+    --ring: 0 32% 52%;
+
+    --sidebar-background: 18 24% 10%;
+    --sidebar-foreground: 35 33% 97%;
+    --sidebar-primary: 0 32% 52%;
+    --sidebar-primary-foreground: 35 33% 97%;
+    --sidebar-accent: 18 24% 18%;
+    --sidebar-accent-foreground: 35 33% 97%;
+    --sidebar-border: 18 24% 20%;
+    --sidebar-ring: 0 32% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-body {
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Theme-based utilities */
+  .bg-theme-background {
+    background-color: var(--theme-background);
+  }
+
+  .bg-theme-surface {
+    background-color: var(--theme-surface);
+  }
+
+  .text-theme-text {
+    color: var(--theme-text);
+  }
+
+  .text-theme-heading {
+    color: var(--theme-heading);
+  }
+
+  .text-theme-accent {
+    color: var(--theme-accent);
+  }
+
+  .border-theme-border {
+    border-color: var(--theme-border);
+  }
+
+  .bg-theme-button {
+    background-color: var(--theme-button);
+  }
+
+  .text-theme-button-text {
+    color: var(--theme-button-text);
+  }
+
+  .shadow-elegant {
+    box-shadow: 0 10px 40px -10px rgba(58, 42, 36, 0.15);
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 0.6s;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite 3s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+}
