@@ -7,8 +7,8 @@
   "theme_color": "#ff6a00",
   "icons": [
     {
-      "src": "/logo.pjeg",
-      "sizes": "192x192",
+      "src": "/logo.jpeg",
+      "sizes": "512x512",
       "type": "image/jpeg"
     },
     {
