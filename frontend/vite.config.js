@@ -7,7 +7,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["logo.jpeg", "logo.jpeg"],
+      includeAssets: ["logo2.png", "logo2.png"],
       manifest: {
         name: "Fancy Collection",
         short_name: "FC",
