@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <div className="absolute top-3 left-3">
-          <span className="px-3 py-1 bg-theme-background/90 backdrop-blur-sm text-theme-accent text-xs font-medium rounded-full">
+          <span className="px-3 py-1 bg-white text-theme-accent text-xs font-medium rounded-full">
             {product.category}
           </span>
         </div>

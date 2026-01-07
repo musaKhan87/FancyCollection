@@ -8,6 +8,7 @@ import Catalog from "./pages/Catalog";
 import AdminLogin from "./pages/AdminLogin";
 import Admin from "./pages/Admin";
 import InstallApp from "./components/layout/InstallApp";
+import ScrollToTop from "./components/layout/ScrollTop";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <>
       <InstallApp />
       <BrowserRouter>
+      <ScrollToTop/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
