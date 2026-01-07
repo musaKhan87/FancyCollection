@@ -7,6 +7,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Catalog from "./pages/Catalog";
 import AdminLogin from "./pages/AdminLogin";
 import Admin from "./pages/Admin";
+import InstallApp from "./components/layout/InstallApp";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <InstallApp/>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/product/:id" element={<ProductDetail />} />
